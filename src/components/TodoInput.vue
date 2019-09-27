@@ -14,6 +14,8 @@ export default {
         },
         methods: {
             addTodo(){
+                var value = this.newTodoItem;
+                console.log(value);
                 this.$emit('addTodo',value);
                 this.clearInput();
             },
