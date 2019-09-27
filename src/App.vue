@@ -1,9 +1,9 @@
 <template>
   <div id="id">
       <TodoHeader></TodoHeader>
-      <TodoInput></TodoInput>
-      <TodoList></TodoList>
-      <TodoFoot></TodoFoot>
+      <TodoInput @addTodo="addTodo"></TodoInput>
+      <TodoList :propsdata="todoItems"></TodoList>
+      <TodoFoot @removeAll="clearAll"></TodoFoot>
   </div>
 </template>
 
@@ -19,7 +19,27 @@ export default {
     'TodoInput' : TodoInput,
     'TodoList' : TodoList,
     'TodoFoot' : TodoFoot,  
- }
+  },
+  data() {
+      return{
+          todoItems: []
+      }
+  },
+  created() {
+      for(var i = 0; i < localStorage.length; i++){
+          this.todoItems.push(localStorage.key(i));
+      }
+  },
+  methods: {
+    addTodo() {
+      localStorage.setItem(todoItem, todoItem);
+      this.todoItems.push(todoItem);
+    },
+    clearAll() {
+      localStorage.clear();
+      this.todoItems = [];
+    }
+  }
 }
 </script>
 
